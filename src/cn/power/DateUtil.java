@@ -9,7 +9,7 @@ public class DateUtil {
 	
 	
 	public static String DATE_FORMAT = "yyyy-MM-dd";
-	public static String DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
+	public static String DATE_TIME_FORMAT = "yyyy-MM-dd kk:mm:ss";
 	
 	private static SimpleDateFormat date_formatter = new SimpleDateFormat(DATE_FORMAT);
 	private static SimpleDateFormat time_formatter = new SimpleDateFormat(DATE_TIME_FORMAT);

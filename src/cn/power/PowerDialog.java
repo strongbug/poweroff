@@ -66,6 +66,10 @@ public class PowerDialog extends JFrame {
 	private JFormattedTextField hour_field = null;
 	private JFormattedTextField min_field = null;
 	
+	private JButton set = null;
+	private JButton cancel = null;
+	
+	
 	
 	private Date getPowerOffTime(){
 		Date off_time = new Date();
@@ -189,7 +193,7 @@ public class PowerDialog extends JFrame {
 		offtime_panel.add(timing);
 		offtime_panel.add(delay);
 
-		JButton set = new JButton("设置");
+		set = new JButton("设置");
 		set.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -200,22 +204,28 @@ public class PowerDialog extends JFrame {
 					return;
 				}
 				
+				set.setEnabled(false);
+				cancel.setEnabled(true);
+				
 				off_flag = true;
 			}
 		});
 		set.setEnabled(true);
 		set.setBounds(40, 150, 60, 25);
 
-		JButton cancel = new JButton("取消");
+		cancel = new JButton("取消");
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("关机取消");
 
+				set.setEnabled(true);
+				cancel.setEnabled(false);
+				
 				off_flag = false;
 			}
 		});
-		cancel.setEnabled(true);
+		cancel.setEnabled(false);
 		cancel.setBounds(120, 150, 60, 25);
 
 		JPanel main_panel = new JPanel(null);

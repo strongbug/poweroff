@@ -41,7 +41,7 @@ import javax.swing.event.AncestorListener;
 
 /**
  * 
- * ����ѡ����������ָ�����ڵ���ʾ��ʽ
+ * 日期选择器，可以指定日期的显示格式
  * 
  */
 public class DateChooser extends JPanel {
@@ -57,9 +57,9 @@ public class DateChooser extends JPanel {
 
 	private Calendar select;
 
-	private JPanel monthPanel;// ����
+	private JPanel monthPanel;// 月历
 
-	private JP1 jp1;// �Ŀ����,���
+	private JP1 jp1;// 四块面板,组成
 
 	private JP2 jp2;
 
@@ -67,7 +67,7 @@ public class DateChooser extends JPanel {
 
 	private JP4 jp4;
 
-	private Font font = new Font("����", Font.PLAIN, 12);
+	private Font font = new Font("宋体", Font.PLAIN, 12);
 
 	private final LabelManager lm = new LabelManager();
 
@@ -117,7 +117,7 @@ public class DateChooser extends JPanel {
 
 	private DateChooser(Date date) {
 
-		this(date, "yyyy��MM��dd��");
+		this(date, "yyyy年MM月dd日");
 
 	}
 
@@ -143,7 +143,7 @@ public class DateChooser extends JPanel {
 
 	/**
 	 * 
-	 * �Ƿ������û�ѡ��
+	 * 是否允许用户选择
 	 * 
 	 */
 
@@ -157,7 +157,7 @@ public class DateChooser extends JPanel {
 
 	/**
 	 * 
-	 * �õ���ǰѡ��������
+	 * 得到当前选择框的日期
 	 * 
 	 */
 
@@ -181,7 +181,7 @@ public class DateChooser extends JPanel {
 
 	}
 
-	// ���ݳ�ʼ��������,��ʼ�����
+	// 根据初始化的日期,初始化面板
 
 	private void initPanel() {
 
@@ -211,7 +211,7 @@ public class DateChooser extends JPanel {
 
 			}
 
-			// ֻҪ�������һ�ƶ�,���Ͼ���popup��ʧ
+			// 只要祖先组件一移动,马上就让popup消失
 
 			public void ancestorMoved(AncestorEvent event) {
 
@@ -321,7 +321,7 @@ public class DateChooser extends JPanel {
 
 	}
 
-	// �����µ�����ˢ��
+	// 根据新的日期刷新
 
 	private void refresh() {
 
@@ -337,7 +337,7 @@ public class DateChooser extends JPanel {
 
 	}
 
-	// �ύ����
+	// 提交日期
 
 	private void commit() {
 
@@ -357,7 +357,7 @@ public class DateChooser extends JPanel {
 
 	}
 
-	// ��������ѡ�����
+	// 隐藏日期选择面板
 
 	private void hidePanel() {
 
@@ -373,7 +373,7 @@ public class DateChooser extends JPanel {
 
 	}
 
-	// ��ʾ����ѡ�����
+	// 显示日期选择面板
 
 	private void showPanel(Component owner) {
 
@@ -423,7 +423,7 @@ public class DateChooser extends JPanel {
 
 	/**
 	 * 
-	 * ����������������ʾ�·ݵ�����
+	 * 最上面的面板用来显示月份的增减
 	 * 
 	 */
 
@@ -447,11 +447,11 @@ public class DateChooser extends JPanel {
 
 			yearleft = new JLabel("  <<", JLabel.CENTER);
 
-			yearleft.setToolTipText("��һ��");
+			yearleft.setToolTipText("上一年");
 
 			yearright = new JLabel(">>  ", JLabel.CENTER);
 
-			yearright.setToolTipText("��һ��");
+			yearright.setToolTipText("下一年");
 
 			yearleft.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
 
@@ -459,11 +459,11 @@ public class DateChooser extends JPanel {
 
 			monthleft = new JLabel("  <", JLabel.RIGHT);
 
-			monthleft.setToolTipText("��һ��");
+			monthleft.setToolTipText("上一月");
 
 			monthright = new JLabel(">  ", JLabel.LEFT);
 
-			monthright.setToolTipText("��һ��");
+			monthright.setToolTipText("下一月");
 
 			monthleft.setBorder(BorderFactory.createEmptyBorder(2, 30, 0, 0));
 
@@ -639,7 +639,7 @@ public class DateChooser extends JPanel {
 
 		private void updateDate() {
 
-			center.setText(select.get(Calendar.YEAR) + "��" + (select.get(Calendar.MONTH) + 1) + "��");
+			center.setText(select.get(Calendar.YEAR) + "年" + (select.get(Calendar.MONTH) + 1) + "月");
 
 		}
 
@@ -659,7 +659,7 @@ public class DateChooser extends JPanel {
 
 			g.setFont(font);
 
-			g.drawString("������ ����һ ���ڶ� ������ ������ ������ ������", 5, 10);
+			g.drawString("星期日 星期一 星期二 星期三 星期四 星期五 星期六", 5, 10);
 
 			g.drawLine(0, 15, getWidth(), 15);
 
@@ -814,7 +814,7 @@ public class DateChooser extends JPanel {
 
 			if (day == select.get(Calendar.DAY_OF_MONTH) && month == select.get(Calendar.MONTH)) {
 
-				// �����ǰ������ѡ������,�������ʾ
+				// 如果当前日期是选择日期,则高亮显示
 
 				g.setColor(new Color(160, 185, 215));
 
@@ -825,7 +825,7 @@ public class DateChooser extends JPanel {
 			if (year == now.get(Calendar.YEAR) && month == now.get(Calendar.MONTH)
 					&& day == now.get(Calendar.DAY_OF_MONTH)) {
 
-				// ������ں͵�ǰ����һ��,���ú��
+				// 如果日期和当前日期一样,则用红框
 
 				Graphics2D gd = (Graphics2D) g;
 
@@ -845,7 +845,7 @@ public class DateChooser extends JPanel {
 
 			}
 
-			if (isSelected) {// �����ѡ���˾ͻ���һ�����߿����
+			if (isSelected) {// 如果被选中了就画出一个虚线框出来
 
 				Stroke s = new BasicStroke(1.0f, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 1.0f,
 						new float[] { 2.0f, 2.0f }, 1.0f);
@@ -994,13 +994,13 @@ public class DateChooser extends JPanel {
 
 		public void setSelect(Point p, boolean b) {
 
-			// ������϶�,��Ҫ�Ż�һ��,�����Ч��
+			// 如果是拖动,则要优化一下,以提高效率
 
 			if (b) {
 
-				// ��ʾ�Ƿ��ܷ���,���ñȽ������еı�ǩ,�ܷ��صı�־���ǰ���һ����ǩ��
+				// 表示是否能返回,不用比较完所有的标签,能返回的标志就是把上一个标签和
 
-				// ��Ҫ��ʾ�ı�ǩ�ҵ��˾Ϳ�����
+				// 将要显示的标签找到了就可以了
 
 				boolean findPrevious = false, findNext = false;
 
@@ -1078,11 +1078,11 @@ public class DateChooser extends JPanel {
 
 			this.setBackground(new Color(160, 185, 215));
 
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy��MM��dd��");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
 
-			final JLabel jl = new JLabel("����: " + sdf.format(new Date()));
+			final JLabel jl = new JLabel("今天: " + sdf.format(new Date()));
 
-			jl.setToolTipText("���ѡ���������");
+			jl.setToolTipText("点击选择今天日期");
 
 			this.add(jl, BorderLayout.CENTER);
 
@@ -1138,15 +1138,15 @@ public class DateChooser extends JPanel {
 
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 
-		JTextField showDate1 = new JTextField("����ѡ������");
+		JTextField showDate1 = new JTextField("单击选择日期");
 
-		JLabel showDate2 = new JLabel("����ѡ������");
+		JLabel showDate2 = new JLabel("单击选择日期");
 
 		dateChooser1.register(showDate1);
 
 		dateChooser2.register(showDate2);
 
-		JFrame jf = new JFrame("��������ѡ����");
+		JFrame jf = new JFrame("测试日期选择器");
 
 		jf.add(showDate1, BorderLayout.NORTH);
 
