@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -274,7 +275,12 @@ public class PowerDialog extends JFrame {
 					Date now = new Date();
 					if(!now.before(off_time)){
 						System.out.println("Power off now!");
-						
+						try {
+							Runtime.getRuntime().exec("shutdown /s /f");
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} 
 					}else{
 						long ltime = off_time.getTime() - now.getTime();
 						long mins = (ltime/1000)/60;
