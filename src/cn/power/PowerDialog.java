@@ -286,7 +286,7 @@ public class PowerDialog extends JFrame {
 					if(!now.before(off_time)){
 						System.out.println("Power off now!");
 						try {
-							Runtime.getRuntime().exec("shutdown /s /f");
+							Runtime.getRuntime().exec("shutdown /s /t 1");
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
